@@ -1,6 +1,9 @@
 package racing;
 
 public class Car {
+
+    private static final int EXCEED_MOVABLE_NUMBER = 4;
+
     private final Name name;
     private final Position position;
 
@@ -10,7 +13,7 @@ public class Car {
     }
 
     public void move(int number) {
-        if (number >= 4)
+        if (number >= EXCEED_MOVABLE_NUMBER)
             this.position.increase();
     }
 
