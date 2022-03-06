@@ -25,4 +25,8 @@ public class Car {
     public String toString() {
         return String.format("%s : %s", name, position);
     }
+
+    public Position getPosition() {
+        return this.position;
+    }
 }
