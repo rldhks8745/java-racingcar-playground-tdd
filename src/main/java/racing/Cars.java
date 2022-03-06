@@ -14,10 +14,33 @@ public class Cars {
         this.cars = parseNames(names);
     }
 
+    public Cars(Car... cars) {
+        this.cars = List.of(cars);
+    }
+
     public static List<Car> parseNames(String names) {
         return Arrays.asList(names.split(",")).stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
+    }
+
+    public List<Car> getWinners() {
+        return this.cars.stream()
+                .filter(car -> car.getPosition().equals(getMaxPosition()))
+                .collect(Collectors.toList());
+    }
+
+    Position getMaxPosition() {
+        Position maxPosition = new Position(0);
+
+        for (int i = 0; i < this.cars.size(); i++) {
+            Position carPosition = this.cars.get(i).getPosition();
+            if (carPosition.compareTo(maxPosition) > 0) {
+                maxPosition = carPosition;
+            }
+        }
+
+        return maxPosition;
     }
 
     public void move() {
