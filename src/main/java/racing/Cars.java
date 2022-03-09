@@ -38,7 +38,7 @@ public class Cars {
     }
 
     public void move() {
-            this.cars.forEach(car -> car.move(new Random().nextInt(BOUND_NUMBER)));
+        this.cars.forEach(car -> car.move(new Random().nextInt(BOUND_NUMBER)));
     }
 
     @Override
