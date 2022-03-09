@@ -3,7 +3,7 @@ package racing;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-public class Position {
+public class Position implements Comparable<Position> {
     private int position;
 
     public Position(int position) {
@@ -33,5 +33,10 @@ public class Position {
     @Override
     public String toString() {
         return "-".repeat(position);
+    }
+
+    @Override
+    public int compareTo(Position other) {
+        return this.position - other.position;
     }
 }
