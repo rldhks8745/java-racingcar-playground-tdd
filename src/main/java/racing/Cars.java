@@ -19,7 +19,7 @@ public class Cars {
     }
 
     public static List<Car> parseNames(String names) {
-        return Arrays.asList(names.split(",")).stream()
+        return Arrays.stream(names.split(","))
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
@@ -31,16 +31,10 @@ public class Cars {
     }
 
     Position getMaxPosition() {
-        Position maxPosition = new Position(0);
-        
-        for (Car car : this.cars) {
-            Position carPosition = car.getPosition();
-            if (carPosition.compareTo(maxPosition) > 0) {
-                maxPosition = carPosition;
-            }
-        }
-
-        return maxPosition;
+        return this.cars.stream()
+                .map(Car::getPosition)
+                .max(Position::compareTo)
+                .orElseThrow();
     }
 
     public void move() {
