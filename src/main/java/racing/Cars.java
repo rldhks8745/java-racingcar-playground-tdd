@@ -32,9 +32,9 @@ public class Cars {
 
     Position getMaxPosition() {
         Position maxPosition = new Position(0);
-
-        for (int i = 0; i < this.cars.size(); i++) {
-            Position carPosition = this.cars.get(i).getPosition();
+        
+        for (Car car : this.cars) {
+            Position carPosition = car.getPosition();
             if (carPosition.compareTo(maxPosition) > 0) {
                 maxPosition = carPosition;
             }
@@ -44,6 +44,11 @@ public class Cars {
     }
 
     public void move() {
-        this.cars.forEach(car -> car.move(new Random().nextInt(BOUND_NUMBER)));
+            this.cars.forEach(car -> car.move(new Random().nextInt(BOUND_NUMBER)));
+    }
+
+    @Override
+    public String toString() {
+        return this.cars.stream().map(Car::toString).collect(Collectors.joining("\n"));
     }
 }
